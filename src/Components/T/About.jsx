@@ -1,10 +1,27 @@
-import React from "react";
+import React,{ useEffect } from "react";
 
 export default function About() {
+  const callAbout=async()=>{
+    try{
+      const res=await fetch('/about',{
+        method:"GET",
+        headers:{
+          Accept:"application/json",
+          "Content-Type":"application/json"
+        },
+        credentials:"include"
+      });
+    }catch(err){
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    callAbout();
+  }, []);
   return (
     <>
       <div className="container">
-        <form method="">
+        <form method="GET">
         {/* <input type="submit" className="edit-profile" value="Edit Profile" name="" id="" /> */}
         <button className="content-right edit-profile">Edit profile</button>
           <div className="row">
@@ -43,7 +60,8 @@ export default function About() {
               </div>
             </div>
             <div className="col-md-8 pl-5 about-info">
-
+                 Name:Hannan
+                 email:dffg
             </div>
           </div>
         </form>
