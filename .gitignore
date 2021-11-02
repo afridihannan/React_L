@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 T/.env
 T1/.env
+/node_modules
+/package-lock.json
