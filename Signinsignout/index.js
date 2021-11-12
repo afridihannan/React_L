@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json());
-//app.use(urlencoded());
+
 app.use(cors());
 
 const db = "mongodb+srv://afridihannan:jo16ce27@cluster0.cr1di.mongodb.net/mernstack?retryWrites=true&w=majority";
