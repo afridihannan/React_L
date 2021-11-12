@@ -1,0 +1,20 @@
+.item{
+    margin: 10px;
+}
+.add-to-cart{
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+.cart-wrapper{
+    margin-top: 30px;
+}
+.itemno{
+    font-size: 40px;
+    position: absolute;
+    right: 8%;
+    top: 7%;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+}
