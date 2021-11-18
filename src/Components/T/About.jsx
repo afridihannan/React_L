@@ -1,6 +1,9 @@
-import React,{ useEffect } from "react";
+import React,{ useEffect,useState } from "react";
+import { useHistory } from "react-router";
 
 export default function About() {
+  const History=useHistory();
+  const [userData, setuserData] = useState({});
   const callAbout=async()=>{
     try{
       const res=await fetch('/about',{
@@ -11,8 +14,11 @@ export default function About() {
         },
         credentials:"include"
       });
+      const data=await res.json;
+      setuserData(data);
     }catch(err){
       console.log(err);
+      History.push('/signup');
     }
   }
   useEffect(() => {
@@ -27,7 +33,7 @@ export default function About() {
           <div className="row">
             <div className="col-md-4"></div>
             <div className="col-md-6">
-              <h5>Hannan Afridi</h5>
+              <h5>{userData.name }</h5>
               <h6>Web Developer</h6>
               <p className="profile-rating mt-3 mb-5">
                 Rankings: <span>1/10</span>
