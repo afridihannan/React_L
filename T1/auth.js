@@ -3,15 +3,14 @@ const router = express.Router();
 const user = require('./userSchema');
 const dcrypt = require('bcryptjs');
 const jwt=require('jsonwebtoken');
+const authenticate=require('./authenticate');
 
 router.get('/', (req, res) => {
     res.send("Hello from the server side");
 });
 router.post('/register', (req, res) => {
     const { name, email, phone, work, password, confirm } = req.body;
-    // console.log(req.body);//To display on console
-
-    // res.json({ message: req.body });//To display on postman
+    
     if (!name || !email || !phone || !work || !password || !confirm) {
         return res.status(422).json({ error: "Please fill the field properly" });
     }
@@ -39,9 +38,8 @@ router.post('/register', (req, res) => {
 // login route
 router.post('/login', async (req, res) => {
     console.log(req.body);
-   // res.send(req.body);
-    /* res.json({message:"Login Succesful"});
-     */
+    res.send(req.body);
+    
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -50,12 +48,18 @@ router.post('/login', async (req, res) => {
         const userlogin = await user.findOne({ email: email });
         if (userlogin) {
             console.log(userlogin);
-            const isMatch = await dcrypt.compare(password, userlogin.password);
+            const isMatch = await dcrypt.compareSync(password, userlogin.password);
             if(!isMatch){
                 console.log(userlogin.password+password);
             }
             const token=await userlogin.generateAuthToken();
            // console.log(token);
+
+           //Cokkies
+           res.cookie("jwt",token,{
+               expires:new Date(Date.now()+25892000000),
+               httpOnly:true
+           })
             if (!isMatch) {
                 return res.status(401).json({ message: "Invalid Credentials" });
             } else {
@@ -68,5 +72,11 @@ router.post('/login', async (req, res) => {
         console.log(err);
     }
 
+});
+
+//Login to about page
+
+router.get('/about',authenticate,(req,res)=>{
+    res.send(req.rootuser);//Sending entire data to frontend
 })
 module.exports = router;

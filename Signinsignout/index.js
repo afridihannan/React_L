@@ -66,6 +66,9 @@ app.post('/login', (req, res) => {
         }
     })
 })
+app.post('/about',(req,res)=>{
+    
+})
 app.listen(9000, (req, res) => {
     console.log("Server running at port 9000");
 })
