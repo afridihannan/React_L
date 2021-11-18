@@ -23,12 +23,12 @@ function App() {
     <>
       <Navbar />
       <Switch>
-        <Route exact path='/'><Home /></Route>
+        {/* <Route exact path='/'><Home /></Route>
         <Route path='/About'><About /></Route>
         <Route path='/Contact'><Contact /></Route>
         <Route path='/Login'><Login /></Route>
         <Route path='/SignUp'><SignUp /></Route>
-        <Route exact path='/undefined'><ErrorPage /></Route>
+        <Route exact path='/undefined'><ErrorPage /></Route> */}
 
         {/* <Route exact path='/'>
           {

@@ -66,7 +66,7 @@ export default function About() {
               </div>
             </div>
             <div className="col-md-8 pl-5 about-info">
-                 Name:Hannan
+                 Name:{userData.name}
                  email:dffg
             </div>
           </div>
